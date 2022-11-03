@@ -1,8 +1,8 @@
 int gatePin=10;
 int delTim=20;
 int resetPin=3;
-int minTim=10000;
-int maxTim=20000;
+int minTim=60000;
+int maxTim=350000;
 long delTimRand;
 
 int timer; //loop timer
@@ -26,20 +26,18 @@ pinMode(resetPin,OUTPUT);
 
 delTimRand=random(minTim,maxTim);
 
-digitalWrite(gatePin,HIGH);
+digitalWrite(gatePin,LOW);
 }
 
 
 void loop() {
-timer = millis();
 
-if (timer>=2400000){
-  for (int i=0;i<=3;i=i+1){
+for (int i=0;i<=3;i=i+1){
 Serial.println(i);
 digitalWrite(gatePin,HIGH);
 delay(delTimRand);
 
-  if (val == HIGH) {            // check if the input is HIGH
+if (val == HIGH) {            // check if the input is HIGH
  } else {
       delay(delTim);
    for ( int i=0; i <= 150; i++) {  // This for loop runs untill the flicker table finishes
@@ -49,7 +47,7 @@ delay(delTimRand);
      countTwo = 0;  // Helps makes sure our next flicker doesnt start in an arbitrary place on the table
    }
    delay(delTim);  // the delay for our flicker, make it faster to to make it flicker a little more violently
-   digitalWrite(gatePin, HIGH);
+   analogWrite(gatePin, 170);
    }
  }
 
@@ -67,13 +65,6 @@ analogWrite(gatePin, 100);
 delay(delTim);
 }
 Serial.println("__________");
+analogWrite(gatePin,LOW);
 delay(delTimRand);
-}
-
-else if (timer>=2400000){
-  analogWrite(gatePin, 0);
-  delay(350000);
-  digitalWrite(resetPin,HIGH);
-  delay(50);
-}
 }
