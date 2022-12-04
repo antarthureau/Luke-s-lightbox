@@ -11,7 +11,7 @@ long delTimRand;
 int val = 0;              //flicker table and integers
 int maxCount = 80;
 int countTwo = 0;
-byte flickerTable[] = { 180, 10, 20, 130, 30, 30, 40, 50, 60, 70, 70, 
+byte flickTab[] = { 180, 10, 20, 130, 30, 30, 40, 50, 60, 70, 70, 
                            60, 255, 50, 50, 50, 60, 70, 80, 90, 100,
                            120,140,160,240,250,100,150,250,250,140,
                            240,230,220, 0, 70, 80, 80,
@@ -57,7 +57,7 @@ if (val == HIGH) {                                         //flicker table
  } else {
       delay(delTim);
    for ( int i=0; i <= 150; i++) {
-   analogWrite(gatePin, flickerTable[countTwo]);
+   analogWrite(gatePin, flickTab[countTwo]);
      countTwo++;
      if(countTwo > maxCount ){
      countTwo = 0;
