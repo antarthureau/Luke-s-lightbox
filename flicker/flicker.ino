@@ -38,7 +38,7 @@ delay(250);
 void loop() {
 unsigned long currentMillis = millis();
 
- if (currentMillis - previousMillis >= interval) {
+ if (currentMillis - previousMillis >= interval) {      // init glitch
   previousMillis = currentMillis;
 for (int j=0;j<=50;j=j+1){
 analogWrite(gatePin,140);
@@ -47,26 +47,26 @@ analogWrite(gatePin,130);
 delay(delTim);
 }
 
-for (int i=0;i<=3;i=i+1){                                 //initialize sequence
+for (int i=0;i<=3;i=i+1){                                 //init seq
 Serial.print("loop ")  ;
 Serial.println(i);
 Serial.print("random time ");
 Serial.println(delTimRand);
 
-if (val == HIGH) {                                         // check if the input is HIGH
+if (val == HIGH) {                                         //flicker table
  } else {
       delay(delTim);
-   for ( int i=0; i <= 150; i++) {                        // This for loop runs untill the flicker table finishes
+   for ( int i=0; i <= 150; i++) {
    analogWrite(gatePin, flickerTable[countTwo]);
      countTwo++;
      if(countTwo > maxCount ){
-     countTwo = 0;  // Helps makes sure our next flicker doesnt start in an arbitrary place on the table
+     countTwo = 0;
    }
-   delay(delTim);  // the delay for our flicker, make it faster to to make it flicker a little more violently
+   delay(delTim);
    analogWrite(gatePin, 170);
    }
  }
-digitalWrite(gatePin,HIGH);
+digitalWrite(gatePin,HIGH);                               //stabilization
 delay(delTimRand);
 
 delTimRand=random(minTim,maxTim);
@@ -76,7 +76,7 @@ delay(delTim);
 Serial.println("__________");
 Serial.println("pause");
 
-for (int j=0;j<=99;j=j+1){
+for (int j=0;j<=99;j=j+1){                              //secondary glitches
 analogWrite(gatePin, 110);
 delay(delTim);
 analogWrite(gatePin, 100);
